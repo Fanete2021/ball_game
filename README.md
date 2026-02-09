@@ -10,6 +10,6 @@
 
 Соберите Docker образ: docker build -t frontend-app .
 
-Запустите контейнер: docker run -p 5173:80 frontend-app
+Запустите контейнер: docker run -p 5173:5173 frontend-app
 
 Откройте в браузере: http://localhost:5173
