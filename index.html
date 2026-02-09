@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="screen-orientation" content="portrait" />
+  <title>PixiJS Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <div class="header">
+    <div class="header__container">
+      <div class="header__info-group">
+        <span>Очки: </span>
+        <span class="header__info-group__value">0</span>
+      </div>
+
+      <div class="header__info-group header__info-group--lives">
+        <span>Жизни: </span>
+        <span class="header__info-group__value">❤️❤️❤️</span>
+      </div>
+
+      <div class="header__indicator header__indicator--buff">
+        <span>⚡ x2: </span>
+        <span class="header__indicator__value">0</span>
+      </div>
+
+      <div class="header__indicator header__indicator--combo">
+        <span>🔥 x</span>
+        <span class="header__indicator__value">0</span>
+      </div>
+
+      <div class="header__indicator header__indicator--difficulty">
+        <span>Уровень: </span>
+        <span class="header__indicator__value">1</span>
+      </div>
+
+      <div class="header__indicator header__indicator--timer">
+        <span>⏱️ </span>
+        <span class="header__indicator__value">0:00</span>
+      </div>
+    </div>
+
+    <div class="header__buttons">
+      <button class="header__button header__button--leaderboard">🏆</button>
+      <button class="header__button header__button--start">СТАРТ</button>
+    </div>
+  </div>
+  <div id="canvas-container"></div>
+</div>
+
+<div class="modal">
+  <div class="modal__overlay"></div>
+  <div class="modal__content">
+    <h2 class="modal__title">ИГРА ОКОНЧЕНА</h2>
+    <div class="modal__label">Ваш результат:</div>
+    <div class="modal__score">0</div>
+    <button class="modal__button">ИГРАТЬ СНОВА</button>
+  </div>
+</div>
+
+<script type="module" src="/src/main.ts"></script>
+</body>
+</html>

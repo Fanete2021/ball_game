@@ -1,0 +1,276 @@
+$bg-color: #020617;
+$border-color: #ffffff;
+$btn-bg: #4fd1ff;
+$btn-hover: #3bb5e0;
+$text-color: #ffffff;
+$secondary_color: #000000;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: $bg-color;
+  display: flex;
+  justify-content: center;
+  font-family: system-ui, -apple-system, sans-serif;
+  color: $text-color;
+}
+
+#app {
+  width: 55vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid $border-color;
+  border-right: 1px solid $border-color;
+  position: relative;
+}
+
+.header {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  z-index: 10;
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+
+  &__info-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 18px;
+    font-weight: 600;
+
+    &--lives &__value {
+      display: flex;
+      gap: 4px;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+
+  &__button {
+    padding: 12px;
+    font-size: 18px;
+    font-weight: 700;
+    background: $btn-bg;
+    color: $secondary_color;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &:hover {
+      background: $btn-hover;
+    }
+
+    &--start {
+      padding: 12px 32px;
+    }
+
+    &--leaderboard {
+      padding: 12px 16px;
+      font-size: 24px;
+    }
+  }
+
+  &__indicator {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 4px 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+
+    &__value {
+      font-weight: 700;
+    }
+
+    &--buff {
+      color: $btn-bg;
+    }
+
+    &--combo {
+      color: #ff6b00;
+      background: rgba(255, 107, 0, 0.1);
+    }
+
+    &--difficulty {
+      color: $text-color;
+    }
+
+    &--timer {
+      color: $text-color;
+    }
+
+    &--difficulty &__value,
+    &--timer &__value {
+      color: $btn-bg;
+    }
+  }
+}
+
+#canvas-container {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(4px);
+  }
+
+  &__content {
+    position: relative;
+    z-index: 1000;
+    background: $bg-color;
+    border: 2px solid $border-color;
+    border-radius: 16px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    min-width: 300px;
+    max-width: 90vw;
+  }
+
+  &__title {
+    font-size: 28px;
+    font-weight: 700;
+    color: $text-color;
+    margin: 0;
+  }
+
+  &__label {
+    font-size: 18px;
+    color: $text-color;
+    opacity: 0.8;
+  }
+
+  &__score {
+    font-size: 48px;
+    font-weight: 700;
+    color: $btn-bg;
+  }
+
+  &__button {
+    padding: 12px 32px;
+    font-size: 18px;
+    font-weight: 700;
+    background: $btn-bg;
+    color: $secondary_color;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &:hover {
+      background: $btn-hover;
+    }
+  }
+}
+
+.leaderboard-modal {
+  &__content {
+    min-width: 500px;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+
+  &__table {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__table-header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    padding: 12px;
+    background: rgba($btn-bg, 1);
+  }
+
+  &__table-body {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__table-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 12px;
+
+    &:nth-child(odd) {
+      background: rgba($text-color, 0.75);
+    }
+
+    &:nth-child(even) {
+      background: rgba($text-color, 0.5);
+    }
+  }
+
+  &__cell {
+    &--rank {
+      width: 50px;
+      text-align: center;
+    }
+
+    &--player {
+      flex: 1;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    &--score {
+      width: 80px;
+      text-align: center;
+    }
+
+    &--date {
+      width: 100px;
+      text-align: center;
+    }
+  }
+}
